@@ -66,7 +66,10 @@ export class HomeComponent {
   constructor(public homeService: HomeService,private DomSan: DomSanitizer, private router: Router, private meta: Meta, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar,private deviceService: DeviceDetectorService) 
   { }
   ngOnInit() {
+    console.log("hello url",this.router)
     this.siteurl = environment.siteURL+this.router.url;
+
+    console.log("url:", this.siteURL,this.router.url,environment.siteURL)
     this.activatedRoute.queryParams.subscribe((params) => {
       this.newsId = params['nLdgCd'];
       this.getArticleData(params['nLdgCd']);
@@ -97,6 +100,7 @@ export class HomeComponent {
   }
   getArticleData(id){
     this.homeService.getArticleData(id).subscribe((res) => {
+      console.log({res})
       //debugger
       if (res['oError']['nErCd'] === 0) {
         this.articleTitle = res['oResponseData']['oShtNws']['sHdeTxt'] !== null ? res['oResponseData']['oShtNws']['sHdeTxt'] : '';
@@ -131,6 +135,7 @@ export class HomeComponent {
         {property: 'og:image:type', content: 'article'},
         {property: 'og:image:height', content: 'en_GB'}
       ]);
+      console.log("###", this.artSingleimg)
     })
   }
   

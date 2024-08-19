@@ -20,7 +20,7 @@ export class HomeService {
     return this.http.post<any>(this.apiURLPAth+'/unauth',{
       nMCd:100000018,
       oRequestData:{
-        nNwsCd: id
+        nNwsCd: 58856
       }
     })
     .pipe(
